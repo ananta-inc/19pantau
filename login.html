@@ -68,6 +68,7 @@
                 if(response.status==200)
                 {
                     alert('Login berhasil, dengan email ' + email.value);
+                    window.location = "profile.html"
                     return response.json();
                 } else {
                     alert('Login Gagal! Pastikan email dan password yang dimasukkan benar dan telah terdaftar')
