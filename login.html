@@ -64,15 +64,14 @@
                     'Content-type' : 'application/json',
                 },
                 body:JSON.stringify(data),
-            }).then(function(response){
-                if(response.status==200)
-                {
-                    alert('Login berhasil, dengan email ' + email.value);
-                    window.location = "profile.html"
-                    return response.json();
-                } else {
-                    alert('Login Gagal! Pastikan email dan password yang dimasukkan benar dan telah terdaftar')
-                }
+            }).then((response) => response.json())
+            .then((result) => {
+                if(result){
+                    alert("You are logged in.");
+                    window.location ="profile.html"
+                   } else {
+                       alert("Please check your login information.");
+                   }
             }).then(information => alert("Selamat datang"))
         })
     
