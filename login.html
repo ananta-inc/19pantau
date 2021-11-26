@@ -35,7 +35,7 @@
                                             <div class="custom-control custom-checkbox small">
                                                 <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
                                             </div>
-                                        </div><button class="btn btn-primary btn-block text-white btn-user" type="submit" value= "submit" onclick="doLogin()">Login</button>
+                                        </div><button class="btn btn-primary btn-block text-white btn-user" type="submit">Login</button>
                                     </form>
                                     <div class="text-center"><a class="small" href="register.html">Create an Account!</a></div>
                                 </div>
@@ -46,25 +46,24 @@
             </div>
         </div>
     </div>
-    <script>
-        function doLogin(){
-            var email = document.getElementById('email');
-            var password = document.getElementById('password');
-            var data = JSON.stringify(
-                {
-                    'email' : email.value,
-                    'password' : password.value,
-                }
-            );
+    <script> 
+
+        var form_el = document.getElementById("user");
+        form_el.addEventListener("submit", function(e){
+            var email = document.getElementById("exampeInputEmail");
+            var password = document.getElementById("exampleInputPassword");
+            e.preventDefault();
+            console.log(email.value)
+            console.log(password.value)
+            data={"email":email.value,"password":password.value}
             var url = "https://backend-embedded-system.herokuapp.com/login"
 
             fetch(url,{
                 method : "POST",
                 headers : {
-                    'Accept' : 'application/json',
                     'Content-type' : 'application/json',
                 },
-                body = data,
+                body:JSON.stringify(data),
             }).then(function(response){
                 if(response.status==200)
                 {
@@ -74,7 +73,8 @@
                     alert('Login Gagal! Pastikan email dan password yang dimasukkan benar dan telah terdaftar')
                 }
             }).then(information => alert("Selamat datang"))
-        }
+        })
+    
     </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
